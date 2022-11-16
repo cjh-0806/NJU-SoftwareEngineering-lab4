@@ -13,14 +13,14 @@ class Type
 public:
     Type(int, int, int);
     int get_type() const { return _type; }
-    int createInt();
-    char createChar();
-    string createString();
+    int createInt(); //随机生成一个整数
+    char createChar(); //随机生成一个字母
+    string createString(); //随机生成一个字符串
 };
 
 class TypeVec
 {
-    vector<Type*> _typeVec;
+    vector<Type> _typeVec;
 public:
     int readInputFormat(const char* src); //读取输入样式
     void createInput(const char* src); //随机生成一组输入

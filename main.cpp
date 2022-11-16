@@ -1,6 +1,7 @@
 #include <iostream>
 #include "createInput.h"
 #include "executeOJ.h"
+#include "judgeEqual.h"
 using namespace std;
 
 int main()
@@ -15,6 +16,8 @@ int main()
         int m = typeVec.readInputFormat(stdinPath.c_str());
         Program p(dirnames[i].c_str(), inputPath.c_str(), m);
         p.executeOJ(typeVec);
+        Judge j(dirnames[i].c_str());
+        j.judgeEqual();
     }
     return 0;
 }

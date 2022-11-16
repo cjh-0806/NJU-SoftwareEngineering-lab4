@@ -28,14 +28,14 @@ void Program::getCppFilePath(const char* src) //获取文件夹中的.cpp文件�
     closedir(pDir);
 }
 
-void Program::executeOJ(TypeVec typeVec) //自动执行文件夹中的.cpp文件m次
+void Program::executeOJ(TypeVec typeVec) //自动执行文件夹中的.cpp文件count次
 {
     for(int i = 0; i < filenames.size(); ++i)
     {
         string command1 = "./generateExe.sh " + filenames[i]; //生成可执行文件
         system(command1.c_str());
     }
-    for(int i = 0; i < count; ++i) //m次生成输入+执行
+    for(int i = 0; i < count; ++i) //count次生成输入+执行
     {
         typeVec.createInput(inputfile.c_str());
         for(int j = 0; j < filenames.size(); ++j)

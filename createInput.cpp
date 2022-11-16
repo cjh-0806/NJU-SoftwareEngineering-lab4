@@ -18,7 +18,12 @@ int Type::createInt()
 
 char Type::createChar()
 {
-    return 'a' + rand() % ('z'-'a'+1);
+    int flag; //flag为1是大写，为0是小写
+        flag = rand()%2;
+    if(flag == 1)
+        return 'A' + rand() % ('Z'-'A'+1);
+    else
+        return 'a' + rand() % ('z'-'a'+1);
 }
 
 string Type::createString()
@@ -56,8 +61,8 @@ int TypeVec::readInputFormat(const char* src) //读取输入样式
         int index = tmp.find('(');
         if(index == -1) //char
         {
-            _typeVec.push_back(new Type(1, 1, 1));
-            res = res > 4 ? res : 4;
+            _typeVec.push_back(Type(1, 1, 1));
+            res = res > 2 ? res : 2;
         }
         else //int&string
         {
@@ -66,9 +71,9 @@ int TypeVec::readInputFormat(const char* src) //读取输入样式
             int a = stoi(tmp.substr(index+1, comma_index-index-1));
             int b = stoi(tmp.substr(comma_index+1, tmp.length()-comma_index-2));
             if(type == "int")
-                _typeVec.push_back(new Type(0, a, b));
+                _typeVec.push_back(Type(0, a, b));
             else if(type == "string")
-                _typeVec.push_back(new Type(2, a, b));
+                _typeVec.push_back(Type(2, a, b));
             res = res > (b-a+1) ? res : (b-a+1);
         }
     }
@@ -82,12 +87,12 @@ void TypeVec::createInput(const char* src) //随机生成一组输入
         return;
     for(int i = 0; i < _typeVec.size(); ++i)
     {
-        int type = _typeVec[i]->get_type();
+        int type = _typeVec[i].get_type();
         switch(type)
         {
-            case 0: fout << _typeVec[i]->createInt() << ' '; break;
-            case 1: fout << _typeVec[i]->createChar() << ' '; break;
-            case 2: fout << _typeVec[i]->createString() << ' '; break;
+            case 0: fout << _typeVec[i].createInt() << ' '; break;
+            case 1: fout << _typeVec[i].createChar() << ' '; break;
+            case 2: fout << _typeVec[i].createString() << ' '; break;
         }
     }
     fout.close();
