@@ -1,5 +1,6 @@
 #include <iostream>
 #include "createInput.h"
+#include "executeOJ.h"
 using namespace std;
 
 int main()
@@ -12,6 +13,8 @@ int main()
         string inputPath = dirnames[i] + "/input.txt"; //生成的输入文件
         TypeVec typeVec; //存放输入格式
         int m = typeVec.readInputFormat(stdinPath.c_str());
+        Program p(dirnames[i].c_str(), inputPath.c_str(), m);
+        p.executeOJ(typeVec);
     }
     return 0;
 }
